@@ -1,0 +1,66 @@
+﻿<Window x:Class="ToDoApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ToDoApp"
+        mc:Ignorable="d"
+        Title="Список задач" Height="700" Width="1000">
+    <Grid Margin="20">
+        <ListBox HorizontalAlignment="Left" VerticalAlignment="Top" x:Name="ListBox" Height="524" Width="500" Margin="20,50,0,0" d:ItemsSource="{d:SampleData ItemCount=5}" SelectionMode="Extended" SelectionChanged="ListBox_SelectionChanged">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid Margin="0,2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="180" />
+                            <ColumnDefinition Width="5" />
+                            <ColumnDefinition Width="190" />
+                            <ColumnDefinition Width="5" />
+                            <ColumnDefinition Width="75" />
+                            <ColumnDefinition Width="5" />
+                            <ColumnDefinition Width="20" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="25" />
+                            <RowDefinition Height="5" />
+                        </Grid.RowDefinitions>
+                        <TextBlock Text="{Binding Title}" FontSize="16" />
+                        <StackPanel  Grid.Column="1" Orientation="Horizontal">
+                            <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
+                        </StackPanel>
+                        <TextBlock Grid.Column="2" Text="{Binding Description}" FontSize="16"/>
+                        <StackPanel  Grid.Column="3" Orientation="Horizontal">
+                            <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
+                        </StackPanel>
+                        <TextBlock Grid.Column="4" Text="{Binding FormatedDate}" FontSize="16"/>
+                        <StackPanel  Grid.Column="5" Orientation="Horizontal">
+                            <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
+                        </StackPanel>
+                        <CheckBox Grid.Column="6" IsChecked="{Binding IsCompleted}"/>
+                        <StackPanel Orientation="Vertical" Grid.Row="1" Grid.ColumnSpan="7">
+                            <Separator/>
+                        </StackPanel>
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <Label HorizontalAlignment="Left" VerticalAlignment="Top" Content="Список задач" Height="36" Margin="220,10,0,0" FontSize="20" Width="300" HorizontalContentAlignment="Right"/>
+        <Button HorizontalAlignment="Right" VerticalAlignment="Bottom" x:Name="AddButton" Click="AddButton_Click" Content="Добавить задачу" FontSize="20"  Margin="0,0,20,47"  Width="400" Height="36"/>
+        <Button HorizontalAlignment="Right" VerticalAlignment="Bottom" x:Name="AddFromFileButton" Click="AddFromFileButton_Click" Content="Добавить из файла" FontSize="20"  Margin="0,0,20,10"  Width="400" Height="36"/>
+        <Button HorizontalAlignment="Left" VerticalAlignment="Bottom" x:Name="RemoveButton" Click="RemoveButton_Click" Content="Удалить задачу" FontSize="20"  Margin="20,0,0,10"  Width="250" Height="36" Visibility="Hidden"/>
+        <Button HorizontalAlignment="Left" VerticalAlignment="Bottom" x:Name="ViewButton" Click="ViewButton_Click" Content="Открыть задачу" FontSize="20"  Margin="270,0,0,10"  Width="250" Height="36" Visibility="Hidden"/>
+        <Label HorizontalAlignment="Right" VerticalAlignment="Top" Content="Добавление задачи" FontSize="20" Height="36" Width="400" Margin="0,10,20,0" HorizontalContentAlignment="Center"/>
+        <Border BorderBrush="DarkGray" BorderThickness="1" HorizontalAlignment="Right" VerticalAlignment="Top" Height="491" Margin="0,50,20,0" Width="400"/>
+        <Label HorizontalAlignment="Right" VerticalAlignment="Top" Content="Название задачи" FontSize="14" Height="30" Width="200" Margin="0,52,210,0"/>
+        <TextBox x:Name="titleInput" MaxLength="35" HorizontalAlignment="Right" VerticalAlignment="Top" Text="" FontSize="14" Height="24" Width="280" Margin="0,82,130,0"/>
+        <Label HorizontalAlignment="Right" VerticalAlignment="Top" Content="Описание" FontSize="14" Height="30" Width="200" Margin="0,112,210,0"/>
+        <TextBox x:Name="descInput" AcceptsReturn="True" TextWrapping="Wrap" HorizontalAlignment="Right" VerticalAlignment="Top" Text="" FontSize="14" Height="200" Width="320" Margin="0,142,90,0"/>
+        <DatePicker x:Name="dateInput" HorizontalAlignment="Right" VerticalAlignment="Top" FontSize="14" Height="30" Width="200" Margin="0, 362, 210, 0" IsTodayHighlighted="True"/>
+        <ComboBox x:Name="ComboBox" HorizontalAlignment="Left" Margin="20,28,0,0" VerticalAlignment="Top" Width="180" Height="22" SelectedIndex="0" SelectionChanged="Combobox_SelectionChanged">
+            <ComboBoxItem>По алвафиту</ComboBoxItem>
+            <ComboBoxItem>По дате окончания</ComboBoxItem>
+            <ComboBoxItem>По статусу выполнения</ComboBoxItem>
+        </ComboBox>
+        <Label Content="Сортировка" HorizontalAlignment="Left" Margin="20,2,0,0" VerticalAlignment="Top" Width="180" FontSize="14"/>
+    </Grid>
+</Window>
